@@ -1,0 +1,17 @@
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - davidmongo
+    environment:
+      - MONGO_URL=mongodb://david:david123@davidmongo:27017/
+
+  davidmongo:
+    image: mongo
+    ports:
+      - "27018:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=david
+      - MONGO_INITDB_ROOT_PASSWORD=david123
